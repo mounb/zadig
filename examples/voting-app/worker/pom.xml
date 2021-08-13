@@ -41,6 +41,77 @@
     </dependency>
   </dependencies>
 
+   <repositories>
+        <repository>
+            <id>Snapshot-Repository</id>
+            <name>Snapshot Repository</name>
+            <url>http://nexus.jiyu.com:8081/nexus/content/repositories/snapshot/</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>evo-Repository</id>
+            <name>evo Repository</name>
+            <url>http://nexus.jiyu.com:8081/nexus/content/repositories/evo/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>Thirdparty-Repository</id>
+            <name>Thirdparty Repository</name>
+            <url>http://nexus.jiyu.com:8081/nexus/content/repositories/thirdparty/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>Central-Repository</id>
+            <name>Central Repository</name>
+            <url>http://nexus.jiyu.com:8081/nexus/content/repositories/central/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>Aliyun-Repository</id>
+            <name>Aliyun Repository</name>
+            <url>http://nexus.jiyu.com:8081/nexus/content/repositories/aliyun/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>Central-Repository</id>
+            <name>Central Repository</name>
+            <url>http://nexus.jiyu.com:8081/nexus/content/repositories/central/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
   <build>
     <plugins>
       <plugin>
