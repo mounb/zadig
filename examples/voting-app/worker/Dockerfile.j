@@ -1,10 +1,19 @@
-FROM microsoft/dotnet:2.0.0-sdk
+FROM maven:3.5-jdk-8-alpine AS build
 
 WORKDIR /code
 
-ADD src/Worker /code/src/Worker
+RUN mkdir -p /root/.m2
+COPY settings.xml /root/.m2/settings.xml
+COPY pom.xml /code/pom.xml
+RUN mvn --batch-mode dependency:resolve
+RUN mvn --batch-mode verify
 
-RUN dotnet restore -v minimal src/Worker \
-    && dotnet publish -c Release -o "./" "src/Worker/" 
+# Adding source, compile and package into a fat jar
+COPY ["src/main", "/code/src/main"]
+RUN mvn --batch-mode package
 
-CMD dotnet src/Worker/Worker.dll
+FROM openjdk:8-jre-alpine
+
+COPY --from=build /code/target/worker-1.0-SNAPSHOT.jar /worker-jar-with-dependencies.jar
+
+CMD ["java", "-XX:+UnlockExperimentalVMOptions", "-XX:+UseCGroupMemoryLimitForHeap", "-jar", "/worker-jar-with-dependencies.jar"]
